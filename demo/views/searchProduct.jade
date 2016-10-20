@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  h1 Rakuten Product Search
+  p Search Keyword
+  form(method='post')
+      input(type='text', name='searchTerm')
+      input(type='submit', value='Submit')
+  br
+  !{searchTerm}
+  table(border='1')
+    tr
+      td Image
+      td Item
+      td Price
+      td URL
+    - searchResult.forEach(function(d) {
+
+      tr
+        td
+          img(src=d['mediumImageUrl'])
+        td= d['productName']
+        td= d['minPrice']
+        td
+         a(href=d['productUrlPC'] target='_blank')= d['productUrlPC']
+    - })
